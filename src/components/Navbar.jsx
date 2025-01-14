@@ -14,7 +14,7 @@ const Navbar = () => {
   };
   const pathname = useLocation().pathname;
   useEffect(() => {
-    modalHidden();
+    setModal("-top-[0] -left-[170vh]");
   }, [pathname]);
   return (
     <div
