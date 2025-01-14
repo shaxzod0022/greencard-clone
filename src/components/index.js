@@ -1,0 +1,12 @@
+export { default as Navbar } from "./Navbar";
+export { default as Footer } from "./Footer";
+export { default as Head } from "./Head";
+export { default as AnketaBtn } from "./AnketaBtn";
+export { default as CheckAnketa } from "./CheckAnketa";
+export { default as AboutUs } from "./AboutUs";
+export { default as News } from "./News";
+export { default as Questions } from "./Questions";
+export { default as GreenCardInfo } from "./GreenCardInfo";
+export { default as AnketaBtnAndTitle } from "./AnketaBtnAndTitle";
+export { default as ServicesInfo } from "./ServicesInfo";
+export { default as ScroolTop } from "./ScroolTop";
