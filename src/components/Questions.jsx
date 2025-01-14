@@ -56,7 +56,7 @@ const Questions = () => {
       </div>
       <Link
         to={`/questions`}
-        className={`bg-darkBlue text-white font-semibold py-3 px-6 text-[20px] rounded-md`}
+        className={`bg-darkBlue text-center text-white font-semibold py-3 px-6 text-[20px] rounded-md`}
       >
         Green Card bo‘yicha barcha savol-javoblar
       </Link>
