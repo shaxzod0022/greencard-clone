@@ -2,14 +2,16 @@ import React from "react";
 import AnketaBtn from "./AnketaBtn";
 import { style } from "../util/style";
 import { headBg } from "../assets";
-import { useLocation } from "react-router-dom"; // To'g'ri import
+import { useLocation } from "react-router-dom";
 import { headInfo } from "../util/constants";
 
 const Head = () => {
-  const pathname = useLocation().pathname;
-  let headTitle =
-    headInfo.find((item) => item.id === pathname.slice(1))?.title ||
-    "Default Title";
+  const { pathname } = useLocation();
+  const headTitle =
+    headInfo.find((item) => item.id === pathname.slice(1))?.title || null;
+  if (pathname.slice(1) === "anketa") {
+    return null;
+  }
   return (
     <div
       className={`${
@@ -34,8 +36,10 @@ const Head = () => {
             <AnketaBtn
               title={`Anketa to'ldirish`}
               className={`bg-green-500 active:bg-green-400`}
-            />{" "}
+            />
           </div>
+        ) : headTitle === null ? (
+          <div>Not Found</div>
         ) : (
           headTitle
         )}

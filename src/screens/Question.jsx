@@ -43,7 +43,7 @@ const Questions = () => {
             <div
               className={`${
                 isOpen.id === item.id && isOpen.completed
-                  ? "max-h-24 opacity-100 mb-5"
+                  ? "max-h-full opacity-100 mb-5"
                   : "max-h-0 opacity-0"
               } overflow-hidden relative z-10 shadow-md transition-all bg-white duration-500 ease-in-out rounded-b-md w-full p-5`}
             >

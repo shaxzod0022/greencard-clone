@@ -18,7 +18,7 @@ const Navbar = () => {
   }, [pathname]);
   return (
     <div
-      className={`${style.flexBetween} relative w-full bg-white lg:px-[120px] px-5 sm:py-[6px] md:py-0 py-[15px]`}
+      className={`${style.flexBetween} shadow-lg relative w-full bg-white lg:px-[120px] px-5 sm:py-[6px] md:py-0 py-[15px]`}
     >
       <ModalMenyu
         value={`${modal} transition-[1s] duration-500`}
