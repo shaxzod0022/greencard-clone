@@ -35,6 +35,7 @@ const BirthDate = () => {
   const handleChange = (e) => {
     const { name, value, max } = e.target;
     if (max && +value > +max) return;
+
     setBirthData((prev) => ({
       ...prev,
       [name]: value,
@@ -61,6 +62,7 @@ const BirthDate = () => {
               value={birthData[item.name]}
               onChange={handleChange}
               max={item.max}
+              min={0}
             />
           </div>
         ))}
