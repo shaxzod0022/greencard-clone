@@ -2,3 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .no-spin {
+    -moz-appearance: textfield; /* Firefox uchun */
+    -webkit-appearance: none; /* Chrome, Safari, Edge uchun */
+    margin: 0;
+  }
+}

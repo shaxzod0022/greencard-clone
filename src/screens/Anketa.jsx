@@ -1,11 +1,22 @@
 import React from "react";
 import { style } from "../util/style";
+import {
+  BirthCity,
+  BirthDate,
+  Gender,
+  PersonalInfo,
+  SelectBorn,
+} from "../components";
 const Anketa = () => {
   return (
     <div
-      className={`${style.flexCol} w-full lg:px-[120px] md:px-[80px] sm:px-[50px] sm:py-10 p-5`}
+      className={`${style.flexCol} gap-8 w-full lg:px-[120px] md:px-[80px] sm:px-[50px] sm:py-10 p-5`}
     >
-      hello anketa page
+      <PersonalInfo />
+      <Gender />
+      <BirthDate />
+      <BirthCity />
+      <SelectBorn />
     </div>
   );
 };

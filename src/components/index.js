@@ -10,3 +10,8 @@ export { default as GreenCardInfo } from "./GreenCardInfo";
 export { default as AnketaBtnAndTitle } from "./AnketaBtnAndTitle";
 export { default as ServicesInfo } from "./ServicesInfo";
 export { default as ScroolTop } from "./ScroolTop";
+export { default as PersonalInfo } from "./anketa_forms/PersonalInfo";
+export { default as Gender } from "./anketa_forms/Gender";
+export { default as BirthDate } from "./anketa_forms/BirthDate";
+export { default as BirthCity } from "./anketa_forms/BirthCity";
+export { default as SelectBorn } from "./anketa_forms/SelectBorn";
