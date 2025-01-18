@@ -1,26 +1,27 @@
 import React, { useState } from "react";
 import { style } from "../../util/style";
+import { useSelector } from "react-redux";
 
 const inputs = [
   {
-    label: "Month",
+    label: { uz: "Oy", ru: "Месяц" },
     name: "month",
     type: "number",
-    placeholder: "mm",
+    placeholder: { uz: "oo", ru: "мм" },
     max: 12,
   },
   {
-    label: "Day",
+    label: { uz: "Kun", ru: "День" },
     name: "day",
     type: "number",
-    placeholder: "dd",
+    placeholder: { uz: "kk", ru: "дд" },
     max: 31,
   },
   {
-    label: "Year",
+    label: { uz: "Yil", ru: "Год" },
     name: "year",
     type: "number",
-    placeholder: "yyyy",
+    placeholder: { uz: "yyyy", ru: "гггг" },
     max: 2006,
   },
 ];
@@ -41,10 +42,12 @@ const BirthDate = () => {
       [name]: value,
     }));
   };
-
+  const language = useSelector((state) => state.language);
   return (
     <div className={`w-full rounded-md`}>
-      <p className={`${style.p} rounded-t-md p-3 bg-gray-200`}>3. Birth Date</p>
+      <p className={`${style.p} rounded-t-md p-3 bg-gray-200`}>
+        3. {language === "uz" ? "Tug'ilgan kun sanasi" : "Дата рождения"}
+      </p>
       <div
         className={`${style.flexBetween} sm:gap-2 gap-6 !items-start border-2 w-full p-7`}
       >
@@ -53,16 +56,18 @@ const BirthDate = () => {
             key={idx}
             className={`${style.flexCol} justify-start lg:w-[30%] sm:w-[45%] w-full gap-2 !items-start`}
           >
-            <label className={`w-full ${style.p}`}>{item.label}</label>
+            <label className={`w-full ${style.p}`}>
+              {item.label[language]}
+            </label>
             <input
               className="border-2 w-full outline-none rounded-md p-2 no-spin"
               type={item.type}
               name={item.name}
-              placeholder={item.placeholder}
+              placeholder={item.placeholder[language]}
               value={birthData[item.name]}
               onChange={handleChange}
               max={item.max}
-              min={0}
+              min={1}
             />
           </div>
         ))}

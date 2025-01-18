@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { style } from "../../util/style";
+import { useSelector } from "react-redux";
 
 const BirthCity = () => {
   const [cityData, setCityData] = useState({
@@ -23,11 +24,14 @@ const BirthCity = () => {
       noCityName: !i.noCityName,
     }));
   };
-
+  const language = useSelector((state) => state.language);
   return (
     <div className={`w-full rounded-md`}>
       <p className={`${style.p} rounded-t-md p-3 bg-gray-200`}>
-        4. City Where You Were Born
+        4.{" "}
+        {language === "uz"
+          ? "Siz tug'ilgan viloyat"
+          : "Провинция, где вы родились"}
       </p>
       <div
         className={`${style.flexBetween} sm:gap-2 gap-6 !items-start border-2 w-full p-7`}
@@ -35,7 +39,9 @@ const BirthCity = () => {
         <div
           className={`${style.flexCol} justify-start md:w-[80%] w-full gap-2 !items-start`}
         >
-          <label className={`w-full ${style.p}`}>Birth City</label>
+          <label className={`w-full ${style.p}`}>
+            {language === "uz" ? "Tug'ilgan shahar" : "Город рождения"}
+          </label>
           <input
             className="border-2 w-full outline-none rounded-md p-2 no-spin"
             type="text"
@@ -51,7 +57,11 @@ const BirthCity = () => {
               checked={cityData.noCityName}
               onChange={handleCheckboxChange}
             />
-            <label>Brith City Unknown</label>
+            <label>
+              {language === "uz"
+                ? "Tug'ilgan shahri noma'lum"
+                : "Город рождения неизвестен"}
+            </label>
           </div>
         </div>
       </div>

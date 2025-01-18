@@ -5,6 +5,7 @@ import { logo, telegram } from "../assets";
 import { navbarLinks } from "../util/constants";
 import AnketaBtn from "./AnketaBtn";
 import ModalMenyu from "./ModalMenyu";
+import LangBtn from "./LangBtn";
 const Navbar = () => {
   const [modal, setModal] = useState("-top-[0] -left-[170vh]");
   const modalHidden = () => {
@@ -56,19 +57,22 @@ const Navbar = () => {
           className={`bg-red-500 active:bg-red-400 lg:block hidden`}
         />
       </div>
-      <Link
-        to={"/"}
-        className="flex items-center gap-4 font-bold lg:text-[19px] md:text-[16px] text-[15px]"
-      >
-        <span>
-          <img
-            className="lg:w-[35px] md:w-[30px] w-[26px]"
-            src={telegram}
-            alt="greencard telegram"
-          />
-        </span>
-        <span>@greencards_uz</span>
-      </Link>
+      <div className="flex items-center gap-5">
+        <LangBtn />
+        <Link
+          to={"/"}
+          className="flex items-center gap-4 font-bold lg:text-[19px] md:text-[16px] text-[15px]"
+        >
+          <span>
+            <img
+              className="lg:w-[35px] md:w-[30px] w-[26px]"
+              src={telegram}
+              alt="greencard telegram"
+            />
+          </span>
+          <span>@greencards_uz</span>
+        </Link>
+      </div>
     </div>
   );
 };

@@ -4,8 +4,9 @@ import {
   BirthCity,
   BirthDate,
   Gender,
+  ImgData,
+  MailAddress,
   PersonalInfo,
-  SelectBorn,
 } from "../components";
 const Anketa = () => {
   return (
@@ -16,7 +17,8 @@ const Anketa = () => {
       <Gender />
       <BirthDate />
       <BirthCity />
-      <SelectBorn />
+      <ImgData />
+      <MailAddress />
     </div>
   );
 };
