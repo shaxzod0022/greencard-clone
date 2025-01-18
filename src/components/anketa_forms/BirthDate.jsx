@@ -42,6 +42,7 @@ const BirthDate = () => {
       [name]: value,
     }));
   };
+
   const language = useSelector((state) => state.language);
   return (
     <div className={`w-full rounded-md`}>

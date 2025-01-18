@@ -3,10 +3,15 @@ import { style } from "../util/style";
 import {
   BirthCity,
   BirthDate,
+  EducationLevel,
+  EmailAddress,
+  FamilySituation,
   Gender,
   ImgData,
   MailAddress,
+  NumberChildren,
   PersonalInfo,
+  PhoneNum,
   SelectCountryToday,
 } from "../components";
 const Anketa = () => {
@@ -21,6 +26,11 @@ const Anketa = () => {
       <ImgData />
       <MailAddress />
       <SelectCountryToday />
+      <PhoneNum />
+      <EmailAddress />
+      <EducationLevel />
+      <FamilySituation />
+      <NumberChildren />
     </div>
   );
 };

@@ -38,15 +38,13 @@ const PersonalInfo = () => {
       setFormData((prev) => {
         const updatedData = { ...prev, [name]: checked };
 
-        // Qo'shimcha shartlar
         if (name === "noFirstName" && checked) {
-          updatedData.firstName = ""; // Ismni tozalash
+          updatedData.firstName = "";
         }
         if (name === "noMiddleName" && checked) {
-          updatedData.middleName = ""; // Otaning ismini tozalash
+          updatedData.middleName = "";
         }
 
-        // Checkboxni `false` qilish
         if (name === "noFirstName" && !checked) {
           updatedData[name] = false;
         }

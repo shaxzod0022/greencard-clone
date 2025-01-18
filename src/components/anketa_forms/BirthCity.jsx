@@ -24,6 +24,7 @@ const BirthCity = () => {
       noCityName: !i.noCityName,
     }));
   };
+
   const language = useSelector((state) => state.language);
   return (
     <div className={`w-full rounded-md`}>
@@ -40,7 +41,7 @@ const BirthCity = () => {
           className={`${style.flexCol} justify-start md:w-[80%] w-full gap-2 !items-start`}
         >
           <label className={`w-full ${style.p}`}>
-            {language === "uz" ? "Tug'ilgan shahar" : "Город рождения"}
+            {language === "uz" ? "Tug'ilgan viloyat" : "Провинция рождения"}
           </label>
           <input
             className="border-2 w-full outline-none rounded-md p-2 no-spin"
@@ -59,8 +60,8 @@ const BirthCity = () => {
             />
             <label>
               {language === "uz"
-                ? "Tug'ilgan shahri noma'lum"
-                : "Город рождения неизвестен"}
+                ? "Tug'ilgan viloyati noma'lum"
+                : "Провинция рождения неизвестен"}
             </label>
           </div>
         </div>

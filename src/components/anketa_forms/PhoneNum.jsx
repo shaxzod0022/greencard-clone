@@ -1,15 +1,16 @@
 import React, { useState } from "react";
-import { style } from "../../util/style";
 import { useSelector } from "react-redux";
+import { style } from "../../util/style";
 
-const SelectCountryToday = () => {
-  const [cityDataToday, setCityDataToday] = useState({ cityName: "" });
+const PhoneNum = () => {
+  const [phoneNum, setPhoneNum] = useState({ phoneNumber: "" });
 
   const handleInputChange = (e) => {
-    const { value } = e.target;
-    setCityDataToday((i) => ({
+    const { value, max } = e.target;
+    if (max && +value > +max) return;
+    setPhoneNum((i) => ({
       ...i,
-      cityName: value,
+      phoneNumber: value,
     }));
   };
 
@@ -17,10 +18,7 @@ const SelectCountryToday = () => {
   return (
     <div className={`w-full rounded-md`}>
       <p className={`${style.p} rounded-t-md p-3 bg-gray-200`}>
-        7.{" "}
-        {language === "uz"
-          ? "Hozirda yashayotgan mamlakatingiz"
-          : "Страна, в которой вы живете сегодня"}
+        8. {language === "uz" ? "Telefon raqami" : "Телефонный номер"}
       </p>
       <div
         className={`${style.flexBetween} sm:gap-2 gap-6 !items-start border-2 w-full p-7`}
@@ -30,18 +28,18 @@ const SelectCountryToday = () => {
         >
           <input
             className="border-2 w-full outline-none rounded-md p-2 no-spin"
-            type="text"
+            type="number"
             name="city"
             onChange={handleInputChange}
-            value={cityDataToday.cityName}
-            placeholder={
-              language === "uz" ? "Mamlakatni tanlang..." : "Выберите страну..."
-            }
+            value={phoneNum.phoneNumber}
+            max={999999999999}
+            min={990000000000}
           />
+          <label>({language === "uz" ? "ixtiyoriy" : "необязательно"})</label>
         </div>
       </div>
     </div>
   );
 };
 
-export default SelectCountryToday;
+export default PhoneNum;

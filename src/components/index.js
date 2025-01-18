@@ -18,3 +18,8 @@ export { default as BirthCity } from "./anketa_forms/BirthCity";
 export { default as ImgData } from "./anketa_forms/ImgData";
 export { default as MailAddress } from "./anketa_forms/MailAddress";
 export { default as SelectCountryToday } from "./anketa_forms/SelectCountryToday";
+export { default as PhoneNum } from "./anketa_forms/PhoneNum";
+export { default as EmailAddress } from "./anketa_forms/EmailAddress";
+export { default as EducationLevel } from "./anketa_forms/EducationLevel";
+export { default as FamilySituation } from "./anketa_forms/FamilySituation";
+export { default as NumberChildren } from "./anketa_forms/NumberChildren";

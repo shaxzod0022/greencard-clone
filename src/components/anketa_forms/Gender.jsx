@@ -3,9 +3,9 @@ import { style } from "../../util/style";
 import { useSelector } from "react-redux";
 
 const Gender = () => {
-  const [genderData, setGenderData] = useState("");
+  const [genderData, setGenderData] = useState({ gender: "" });
   const handleChange = (e) => {
-    setGenderData(e.target.value);
+    setGenderData((i) => ({ ...i, gender: e.target.value }));
   };
   const language = useSelector((state) => state.language);
   console.log(genderData);
