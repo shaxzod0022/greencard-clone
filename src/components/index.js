@@ -17,3 +17,4 @@ export { default as BirthDate } from "./anketa_forms/BirthDate";
 export { default as BirthCity } from "./anketa_forms/BirthCity";
 export { default as ImgData } from "./anketa_forms/ImgData";
 export { default as MailAddress } from "./anketa_forms/MailAddress";
+export { default as SelectCountryToday } from "./anketa_forms/SelectCountryToday";

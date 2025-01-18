@@ -31,26 +31,43 @@ const inputs = [
 
 const PersonalInfo = () => {
   const [formData, setFormData] = useState({});
-
   const handleChange = (e) => {
     const { name, type, value, checked } = e.target;
+
     if (type === "checkbox") {
       setFormData((prev) => {
-        if (name === "noMiddleName" && checked) {
-          return { ...prev, [name]: checked, middleName: "" };
+        const updatedData = { ...prev, [name]: checked };
+
+        // Qo'shimcha shartlar
+        if (name === "noFirstName" && checked) {
+          updatedData.firstName = ""; // Ismni tozalash
         }
-        return { ...prev, [name]: checked };
+        if (name === "noMiddleName" && checked) {
+          updatedData.middleName = ""; // Otaning ismini tozalash
+        }
+
+        // Checkboxni `false` qilish
+        if (name === "noFirstName" && !checked) {
+          updatedData[name] = false;
+        }
+        if (name === "noMiddleName" && !checked) {
+          updatedData[name] = false;
+        }
+
+        return updatedData;
       });
     } else {
-      setFormData((prev) => {
-        if (name === "middleName" && value) {
-          return { ...prev, [name]: value, noMiddleName: false };
-        }
-        return { ...prev, [name]: value };
-      });
+      setFormData((prev) => ({
+        ...prev,
+        [name]: value,
+        ...(name === "firstName" && { noFirstName: false }),
+        ...(name === "middleName" && { noMiddleName: false }),
+      }));
     }
   };
+
   const language = useSelector((state) => state.language);
+
   return (
     <div className={`w-full rounded-md`}>
       <h2 className={`${style.h2} w-full text-center mb-2`}>
@@ -79,7 +96,10 @@ const PersonalInfo = () => {
                 name={item.name}
                 onChange={handleChange}
                 value={formData[item.name] || ""}
-                disabled={item.name === "middleName" && formData.noMiddleName}
+                disabled={
+                  (item.name === "firstName" && formData.noFirstName) ||
+                  (item.name === "middleName" && formData.noMiddleName)
+                }
               />
               {item.type2 && (
                 <div className={`flex items-center gap-2`}>

@@ -56,7 +56,7 @@ const MailAddress = () => {
     if (e.target.checked) {
       setMailData((prev) => ({
         ...prev,
-        mailCode: "",
+        mailCode: false,
       }));
     }
   };

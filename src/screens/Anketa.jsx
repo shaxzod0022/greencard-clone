@@ -7,6 +7,7 @@ import {
   ImgData,
   MailAddress,
   PersonalInfo,
+  SelectCountryToday,
 } from "../components";
 const Anketa = () => {
   return (
@@ -19,6 +20,7 @@ const Anketa = () => {
       <BirthCity />
       <ImgData />
       <MailAddress />
+      <SelectCountryToday />
     </div>
   );
 };
