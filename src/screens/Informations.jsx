@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { style } from "../util/style";
 import { informations } from "../util/constants";
+import { useSelector } from "react-redux";
 
 const Informations = () => {
   const [isOpen, setIsOpen] = useState(null);
@@ -9,6 +10,7 @@ const Informations = () => {
     setIsOpen((prevId) => (prevId === id ? null : id));
   };
 
+  const lang = useSelector((i) => i.language);
   return (
     <div
       className={`${style.flexCol} sm:gap-4 gap-2 !items-start w-full lg:px-[120px] md:px-[80px] sm:px-[50px] sm:py-10 p-5`}
@@ -17,9 +19,9 @@ const Informations = () => {
       {informations.map((item, idx) => {
         return (
           <div key={idx} className="w-full">
-            <h3 className={`${style.h3} !text-black`}>{item.title}</h3>
-            <p className={`${style.p}`}>{item.descriptions}</p>
-            <p className={`${style.p} mt-4`}>{item.descriptions2}</p>
+            <h3 className={`${style.h3} !text-black`}>{item.title[lang]}</h3>
+            <p className={`${style.p}`}>{item.descriptions[lang]}</p>
+            <p className={`${style.p} mt-4`}>{item.descriptions2[lang]}</p>
             <div className={`${style.flexCol} w-full`}>
               {item.questions.map((item2, idx2) => (
                 <div key={idx2} className="w-full">
@@ -35,7 +37,7 @@ const Informations = () => {
                     }}
                   >
                     <p className={`${style.p}`}>
-                      {item2.id}. {item2.question}
+                      {item2.id}. {item2.question[lang]}
                     </p>
                     <img
                       className={`transform ${
@@ -52,9 +54,9 @@ const Informations = () => {
                         : "max-h-0 opacity-0"
                     } overflow-hidden relative z-10 shadow-md transition-all bg-white duration-500 ease-in-out rounded-b-md w-full p-5`}
                   >
-                    <p className={`${style.p} w-full space-y-2`}>
-                      {item2.answer}
-                    </p>
+                    <div className={`${style.p} w-full space-y-2`}>
+                      {item2.answer[lang]}
+                    </div>
                   </div>
                 </div>
               ))}

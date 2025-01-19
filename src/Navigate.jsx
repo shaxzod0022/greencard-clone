@@ -21,31 +21,32 @@ import {
 const Navigate = () => {
   return (
     <BrowserRouter>
-      <ScroolTop />
-      <Navbar />
-      <Head />
-      <Routes>
-        {/* Home */}
-        <Route path="/" element={<Home />} />
-        {/* Xizmatlar */}
-        <Route path="/services" element={<Services />} />
-        {/* Yangiliklar */}
-        <Route path="/news" element={<News />} />
-        {/* Ma'lumotlar */}
-        <Route path="/information" element={<Informations />} />
-        {/* Savollar */}
-        <Route path="/questions" element={<Question />} />
-        {/* Aloqa */}
-        <Route path="/communication" element={<Communication />} />
-        {/* Anketa toldirish */}
-        <Route path="/anketa" element={<Anketa />} />
-      </Routes>
-      <AnketaBtnAndTitle />
-      <Footer />
-      <AnketaBtn
-        title={`Anketa to'ldirish`}
-        className={`bg-green-500 active:bg-green-400 fixed bottom-8 z-40 right-8`}
-      />
+      <div className="max-w-[1600px] mx-auto">
+        <ScroolTop />
+        <Navbar />
+        <Head />
+        <Routes>
+          {/* Home */}
+          <Route path="/" element={<Home />} />
+          {/* Xizmatlar */}
+          <Route path="/services" element={<Services />} />
+          {/* Yangiliklar */}
+          <Route path="/news" element={<News />} />
+          {/* Ma'lumotlar */}
+          <Route path="/information" element={<Informations />} />
+          {/* Savollar */}
+          <Route path="/questions" element={<Question />} />
+          {/* Aloqa */}
+          <Route path="/communication" element={<Communication />} />
+          {/* Anketa toldirish */}
+          <Route path="/anketa" element={<Anketa />} />
+        </Routes>
+        <AnketaBtnAndTitle />
+        <Footer />
+        <AnketaBtn
+          className={`bg-green-500 active:bg-green-400 fixed bottom-8 z-40 right-8`}
+        />
+      </div>
     </BrowserRouter>
   );
 };

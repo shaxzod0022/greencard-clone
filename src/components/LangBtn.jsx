@@ -21,7 +21,7 @@ const LangBtn = () => {
 
   return (
     <button
-      className="bg-darkBlue text-white sm:px-4 sm:py-1 px-3 py-1 rounded-md font-semibold"
+      className="border-darkBlue border-[3px] text-darkBlue hover:bg-darkBlue hover:text-white transition px-3.5 py-0.5 rounded-md font-semibold"
       onClick={updateLanguage}
     >
       {language.toUpperCase()}

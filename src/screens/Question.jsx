@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { style } from "../util/style";
 import { requestData } from "../util/constants";
+import { useSelector } from "react-redux";
 
 const Questions = () => {
   const [isOpen, setIsOpen] = useState({ id: null, completed: false });
@@ -11,12 +12,15 @@ const Questions = () => {
       completed: prevState.id === id ? !prevState.completed : true,
     }));
   };
+  const lang = useSelector((i) => i.language);
   return (
     <div
       className={`${style.flexCol} w-full lg:px-[120px] md:px-[80px] sm:px-[50px] sm:py-10 p-5`}
     >
       <h3 className={`${style.h3} !text-black`}>
-        Ko‘p beriladigan savollarga javoblar
+        {lang === "uz"
+          ? "Ko‘p beriladigan savollarga javoblar"
+          : "Ответы на часто задаваемые вопросы"}
       </h3>
       <div className={`${style.flexCol} w-full mb-8`}>
         {requestData.map((item, idx) => (
@@ -30,7 +34,7 @@ const Questions = () => {
               } z-0 shadow-md transition duration-400 cursor-pointer w-full p-5`}
             >
               <p className={`${style.p}`}>
-                {item.id}. {item.request}
+                {item.id}. {item.request[lang]}
               </p>
               <img
                 className={`transform ${
@@ -47,7 +51,9 @@ const Questions = () => {
                   : "max-h-0 opacity-0"
               } overflow-hidden relative z-10 shadow-md transition-all bg-white duration-500 ease-in-out rounded-b-md w-full p-5`}
             >
-              <p className={`${style.p} w-full space-y-2`}>{item.respons}</p>
+              <div className={`${style.p} w-full space-y-2`}>
+                {item.respons[lang]}
+              </div>
             </div>
           </div>
         ))}

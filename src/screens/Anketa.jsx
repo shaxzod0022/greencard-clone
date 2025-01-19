@@ -3,6 +3,7 @@ import { style } from "../util/style";
 import {
   BirthCity,
   BirthDate,
+  ContinueBtn,
   EducationLevel,
   EmailAddress,
   FamilySituation,
@@ -17,7 +18,7 @@ import {
 const Anketa = () => {
   return (
     <div
-      className={`${style.flexCol} gap-8 w-full lg:px-[120px] md:px-[80px] sm:px-[50px] sm:py-10 p-5`}
+      className={`${style.flexCol} !items-start gap-8 w-full lg:px-[120px] md:px-[80px] sm:px-[50px] sm:py-10 p-5 lg:mt-28 sm:mt-[52px] mt-[70px]`}
     >
       <PersonalInfo />
       <Gender />
@@ -31,6 +32,7 @@ const Anketa = () => {
       <EducationLevel />
       <FamilySituation />
       <NumberChildren />
+      <ContinueBtn />
     </div>
   );
 };
