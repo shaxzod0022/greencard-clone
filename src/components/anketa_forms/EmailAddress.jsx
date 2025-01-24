@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { style } from "../../util/style";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { updateInput } from "../../store/anketaData";
 
 const emailAddress = [
   {
@@ -20,21 +21,26 @@ const emailAddress = [
 ];
 
 const EmailAddress = () => {
-  const language = useSelector((state) => state.language);
-  const [emailData, setEmailData] = useState({});
+  const dispatch = useDispatch();
+  const language = useSelector((state) => state.language.language);
+  const emailData = useSelector((i) => i.form.data.emails || "");
+  const toggle = useSelector((i) => i.currentBtn.current);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setEmailData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    dispatch(
+      updateInput({
+        key: "emails",
+        name: name,
+        value: value,
+      })
+    );
   };
 
   return (
     <div className={`w-full rounded-md`}>
       <p className={`${style.p} rounded-t-md p-3 bg-gray-200`}>
-        6. {language === "uz" ? "Elektron pochta" : "Электронная почта"}
+        9. {language === "uz" ? "Elektron pochta" : "Электронная почта"}
       </p>
       <div
         className={`${style.flexBetween} sm:gap-2 gap-6 !items-start border-2 w-full p-7`}
@@ -48,13 +54,17 @@ const EmailAddress = () => {
               className={`${style.flexCol} gap-2 !items-start w-full sm:w-[80%]`}
             >
               <label className={`${style.p}`}>{item.label[language]}</label>
-              <input
-                type="text"
-                name={item.name}
-                className="w-full border-2 outline-none p-2 rounded-md"
-                onChange={handleChange}
-                value={emailData[item.name] || ""}
-              />
+              {toggle ? (
+                <input
+                  type="text"
+                  name={item.name}
+                  className="w-full border-2 outline-none p-2 rounded-md"
+                  onChange={handleChange}
+                  value={emailData[item.name] || ""}
+                />
+              ) : (
+                <p className={`${style.p}`}>{emailData[item.name] || ""}</p>
+              )}
             </div>
           ))}
           <p>

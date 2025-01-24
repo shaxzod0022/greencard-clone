@@ -4,8 +4,7 @@ import "./index.css";
 import Navigate from "./Navigate";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
-import store from "./store/lang";
-
+import store from "./store/store";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>

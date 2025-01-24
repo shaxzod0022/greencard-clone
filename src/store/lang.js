@@ -1,29 +1,19 @@
-import { createStore } from "redux";
-
-const SET_LANGUAGE = "SET_LANGUAGE";
-
-export const setLanguage = (language) => ({
-  type: SET_LANGUAGE,
-  payload: language,
-});
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  language: localStorage.getItem("language") || "ru",
+  language: localStorage.getItem("language") || "uz",
 };
 
-const languageReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case SET_LANGUAGE:
+const languageSlice = createSlice({
+  name: "language",
+  initialState,
+  reducers: {
+    setLanguage: (state, action) => {
+      state.language = action.payload;
       localStorage.setItem("language", action.payload);
-      return {
-        ...state,
-        language: action.payload,
-      };
-    default:
-      return state;
-  }
-};
+    },
+  },
+});
 
-const store = createStore(languageReducer);
-
-export default store;
+export const { setLanguage } = languageSlice.actions;
+export default languageSlice.reducer;

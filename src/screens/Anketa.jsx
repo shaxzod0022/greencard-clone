@@ -3,6 +3,7 @@ import { style } from "../util/style";
 import {
   BirthCity,
   BirthDate,
+  CanselEntryBtn,
   ContinueBtn,
   EducationLevel,
   EmailAddress,
@@ -14,6 +15,7 @@ import {
   PersonalInfo,
   PhoneNum,
   SelectCountryToday,
+  SubmitBtn,
 } from "../components";
 const Anketa = () => {
   return (
@@ -32,7 +34,11 @@ const Anketa = () => {
       <EducationLevel />
       <FamilySituation />
       <NumberChildren />
-      <ContinueBtn />
+      <div className="flex items-center gap-4">
+        <SubmitBtn />
+        <ContinueBtn />
+        <CanselEntryBtn />
+      </div>
     </div>
   );
 };

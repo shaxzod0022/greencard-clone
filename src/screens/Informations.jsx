@@ -10,7 +10,7 @@ const Informations = () => {
     setIsOpen((prevId) => (prevId === id ? null : id));
   };
 
-  const lang = useSelector((i) => i.language);
+  const lang = useSelector((i) => i.language.language);
   return (
     <div
       className={`${style.flexCol} sm:gap-4 gap-2 !items-start w-full lg:px-[120px] md:px-[80px] sm:px-[50px] sm:py-10 p-5`}

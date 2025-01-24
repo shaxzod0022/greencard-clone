@@ -3,7 +3,7 @@ import { style } from "../util/style";
 import { newsData } from "../util/constants";
 import { useSelector } from "react-redux";
 const News = () => {
-  const lang = useSelector((i) => i.language);
+  const lang = useSelector((i) => i.language.language);
   return (
     <div
       className={`${style.flexCol} bg-lightGrey w-full lg:px-[120px] md:px-[80px] sm:px-[50px] sm:py-10 p-5`}

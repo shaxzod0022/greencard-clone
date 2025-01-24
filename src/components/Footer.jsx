@@ -5,7 +5,7 @@ import { Link } from "react-router";
 import { useSelector } from "react-redux";
 
 const Footer = () => {
-  const language = useSelector((state) => state.language);
+  const language = useSelector((state) => state.language.language);
   return (
     <div
       className={`flex justify-center !items-start flex-wrap bg-white sm:gap-4 gap-5 w-full lg:px-[120px] md:px-[80px] sm:px-[50px] sm:pt-10  p-5`}

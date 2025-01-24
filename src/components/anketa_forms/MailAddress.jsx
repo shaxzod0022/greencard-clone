@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { style } from "../../util/style";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { updateInput } from "../../store/anketaData";
 
 const mailAddress = [
   {
@@ -39,26 +40,32 @@ const mailAddress = [
 ];
 
 const MailAddress = () => {
-  const language = useSelector((state) => state.language);
-  const [mailData, setMailData] = useState({});
+  const language = useSelector((state) => state.language.language);
+  const toggle = useSelector((i) => i.currentBtn.current);
+  const mailAddressStore = useSelector((i) => i.form.data.mailingAddress);
+  const dispatch = useDispatch();
   const [isMailCodeUnavailable, setIsMailCodeUnavailable] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setMailData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    dispatch(
+      updateInput({
+        key: "mailingAddress",
+        name: name,
+        value: value,
+      })
+    );
   };
-
   const handleCheckboxChange = (e) => {
-    setIsMailCodeUnavailable(e.target.checked);
-    if (e.target.checked) {
-      setMailData((prev) => ({
-        ...prev,
-        mailCode: false,
-      }));
-    }
+    const isChecked = e.target.checked;
+    setIsMailCodeUnavailable(isChecked);
+    dispatch(
+      updateInput({
+        key: "mailingAddress",
+        name: "mailCode",
+        value: isChecked ? false : "",
+      })
+    );
   };
 
   return (
@@ -78,15 +85,21 @@ const MailAddress = () => {
               className={`${style.flexCol} gap-2 !items-start w-full sm:w-[80%]`}
             >
               <label className={`${style.p}`}>{item.label[language]}</label>
-              <input
-                type="text"
-                name={item.name}
-                className="w-full border-2 outline-none p-2 rounded-md"
-                onChange={handleChange}
-                value={mailData[item.name] || ""}
-                disabled={item.name === "mailCode" && isMailCodeUnavailable}
-              />
-              {item.name === "mailCode" && (
+              {toggle ? (
+                <input
+                  type="text"
+                  name={item.name}
+                  className="w-full border-2 outline-none p-2 rounded-md"
+                  onChange={handleChange}
+                  value={mailAddressStore[item.name] || ""}
+                  disabled={item.name === "mailCode" && isMailCodeUnavailable}
+                />
+              ) : (
+                <p className={`${style.p}`}>
+                  {mailAddressStore[item.name] || ""}
+                </p>
+              )}
+              {toggle && item.name === "mailCode" && (
                 <div className="flex items-center gap-2 flex-wrap">
                   <input
                     type="checkbox"

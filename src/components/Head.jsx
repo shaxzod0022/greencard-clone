@@ -7,7 +7,7 @@ import { headInfo } from "../util/constants";
 import { useSelector } from "react-redux";
 
 const Head = () => {
-  const language = useSelector((i) => i.language);
+  const language = useSelector((i) => i.language.language);
   const { pathname } = useLocation();
   const headTitle =
     headInfo.find((item) => item.id === pathname.slice(1))?.title[language] ||

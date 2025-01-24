@@ -4,7 +4,7 @@ import AnketaBtn from "./AnketaBtn";
 import { useSelector } from "react-redux";
 
 const AnketaBtnAndTitle = () => {
-  const language = useSelector((state) => state.language);
+  const language = useSelector((state) => state.language.language);
   return (
     <div
       className={`${style.flexCol} bg-darkBlue sm:gap-4 gap-2 w-full lg:px-[120px] md:px-[80px] sm:px-[50px] sm:py-10 p-5`}

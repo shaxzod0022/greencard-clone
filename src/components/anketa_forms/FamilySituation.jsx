@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { style } from "../../util/style";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { updateInput } from "../../store/anketaData";
 
 const familySituation = [
   {
@@ -50,18 +51,26 @@ const familySituation = [
 ];
 
 const FamilySituation = () => {
-  const language = useSelector((state) => state.language);
-  const [situationData, setSituationData] = useState({});
+  const language = useSelector((state) => state.language.language);
+  const dispatch = useDispatch();
+  const toggle = useSelector((i) => i.currentBtn?.current);
+  const situationData = useSelector((i) => i.form?.data?.maritalStatus || {});
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setSituationData((i) => ({ ...i, [name]: value }));
+    dispatch(
+      updateInput({
+        key: "maritalStatus",
+        name: name,
+        value: value,
+      })
+    );
   };
-  console.log(situationData);
 
   return (
     <div className={`w-full rounded-md`}>
       <p className={`${style.p} rounded-t-md p-3 bg-gray-200`}>
-        8.{" "}
+        11.{" "}
         {language === "uz"
           ? "Hozirgi oilaviy holatingiz nima?"
           : "Какой у вас текущий семейный статус?"}
@@ -72,18 +81,29 @@ const FamilySituation = () => {
         <div
           className={`${style.flexCol} justify-start w-full gap-2 !items-start`}
         >
-          {familySituation.map((item, idx) => (
-            <div key={idx} className={`flex items-center gap-2 w-full`}>
-              <input
-                type="radio"
-                name="situation"
-                className="cursor-pointer"
-                onChange={handleChange}
-                value={item.situation}
-              />
-              <label className={`${style.p}`}>{item.label[language]}</label>
-            </div>
-          ))}
+          {toggle ? (
+            familySituation.map((item, idx) => (
+              <div key={idx} className={`flex items-center gap-2 w-full`}>
+                <input
+                  type="radio"
+                  name="situation"
+                  className="cursor-pointer"
+                  onChange={handleChange}
+                  value={item.situation}
+                  checked={situationData?.situation === item.situation}
+                />
+                <label className={`${style.p}`}>{item.label[language]}</label>
+              </div>
+            ))
+          ) : (
+            <p className={`${style.p}`}>
+              {familySituation.map((item) => {
+                if (item.situation === situationData?.situation)
+                  return item.label[language];
+                return null;
+              })}
+            </p>
+          )}
           {language === "uz" ? (
             <p className="w-full mt-3">
               Yuridik jihatdan ajratish — bu juftlik ajralishga qaror qilganda

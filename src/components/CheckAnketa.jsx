@@ -3,7 +3,7 @@ import { style } from "../util/style";
 import { useSelector } from "react-redux";
 
 const CheckAnketa = () => {
-  const lang = useSelector((i) => i.language);
+  const lang = useSelector((i) => i.language.language);
   return (
     <div
       className={`w-full ${style.flexCol} gap-8 md:py-[60px] py-[40px] lg:px-[150px] md:px-[30px] sm:px-[50px] px-5`}
@@ -19,6 +19,7 @@ const CheckAnketa = () => {
         <input
           className="md:w-[82%] sm:w-[70%] w-full sm:border-0 border-2 border-blueColor outline-none rounded-[28px] px-4 py-2 md:text-[22px] text-[15px] font-semibold"
           type="text"
+          required
           placeholder={
             lang === "uz"
               ? "ANKETA RAQAMI: 2027_____ _____ _____"

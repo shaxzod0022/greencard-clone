@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { style } from "../../util/style";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { updateInput } from "../../store/anketaData";
 import { Link } from "react-router";
 
 const educationLevels = [
@@ -77,18 +78,28 @@ const educationLevels = [
 ];
 
 const EducationLevel = () => {
-  const language = useSelector((state) => state.language);
-  const [levelData, setLevelData] = useState({});
-  console.log(levelData);
+  const dispatch = useDispatch();
+  const language = useSelector((state) => state.language.language);
+  const toggle = useSelector((i) => i.currentBtn.current);
+  const educationLevel = useSelector(
+    (state) => state.form?.data?.educationLevel || ""
+  );
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setLevelData((i) => ({ ...i, [name]: value }));
+    const { value } = e.target;
+    dispatch(
+      updateInput({
+        key: "educationLevel",
+        name: "level",
+        value: value,
+      })
+    );
   };
+
   return (
     <div className={`w-full rounded-md`}>
       <p className={`${style.p} rounded-t-md p-3 bg-gray-200`}>
-        7.{" "}
+        10.{" "}
         {language === "uz"
           ? "Hozirgi kunda erishgan eng yuqori ta'lim darajangiz nima?"
           : "Какой наивысший уровень образования вы достигли на сегодняшний день?"}
@@ -99,18 +110,29 @@ const EducationLevel = () => {
         <div
           className={`${style.flexCol} justify-start w-full gap-2 !items-start`}
         >
-          {educationLevels.map((item, idx) => (
-            <div key={idx} className={`flex items-center gap-2 w-full`}>
-              <input
-                type="radio"
-                name="level"
-                className="cursor-pointer"
-                onChange={handleChange}
-                value={item.levelName}
-              />
-              <label className={`${style.p}`}>{item.label[language]}</label>
-            </div>
-          ))}
+          {toggle ? (
+            educationLevels.map((item, idx) => (
+              <div key={idx} className={`flex items-center gap-2 w-full`}>
+                <input
+                  type="radio"
+                  name="level"
+                  className="cursor-pointer"
+                  onChange={handleChange}
+                  value={item.levelName}
+                  checked={educationLevel?.level === item.levelName}
+                />
+                <label className={`${style.p}`}>{item.label[language]}</label>
+              </div>
+            ))
+          ) : (
+            <p className={`${style.p}`}>
+              {educationLevels.map((item) => {
+                if (item.levelName === educationLevel.level)
+                  return item.label[language];
+                return null;
+              })}
+            </p>
+          )}
           {language === "uz" ? (
             <p className="w-full mt-3">
               Sizda to'liq ta'lim kursini tamomlaganligini aks ettiruvchi

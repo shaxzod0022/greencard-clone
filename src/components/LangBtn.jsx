@@ -4,7 +4,7 @@ import { setLanguage } from "../store/lang";
 
 const LangBtn = () => {
   const [language, setLanguageState] = useState(
-    localStorage.getItem("language") || "ru"
+    localStorage.getItem("language") || "uz"
   );
 
   const dispatch = useDispatch();

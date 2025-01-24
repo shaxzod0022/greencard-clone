@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { style } from "../../util/style";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { updateInput } from "../../store/anketaData";
 
 const inputs = [
   {
@@ -9,6 +10,7 @@ const inputs = [
     type: "number",
     placeholder: { uz: "oo", ru: "мм" },
     max: 12,
+    min: 1,
   },
   {
     label: { uz: "Kun", ru: "День" },
@@ -16,6 +18,7 @@ const inputs = [
     type: "number",
     placeholder: { uz: "kk", ru: "дд" },
     max: 31,
+    min: 1,
   },
   {
     label: { uz: "Yil", ru: "Год" },
@@ -23,27 +26,29 @@ const inputs = [
     type: "number",
     placeholder: { uz: "yyyy", ru: "гггг" },
     max: 2006,
+    min: 1900,
   },
 ];
 
 const BirthDate = () => {
-  const [birthData, setBirthData] = useState({
-    month: "",
-    day: "",
-    year: "",
-  });
+  const dispatch = useDispatch();
+  const birthDate = useSelector((state) => state.form.data.dateOfBirth || {});
+  const toggle = useSelector((i) => i.currentBtn.current);
+  const language = useSelector((state) => state.language.language);
 
   const handleChange = (e) => {
     const { name, value, max } = e.target;
     if (max && +value > +max) return;
 
-    setBirthData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    dispatch(
+      updateInput({
+        key: "dateOfBirth",
+        name: name,
+        value: value,
+      })
+    );
   };
 
-  const language = useSelector((state) => state.language);
   return (
     <div className={`w-full rounded-md`}>
       <p className={`${style.p} rounded-t-md p-3 bg-gray-200`}>
@@ -60,16 +65,20 @@ const BirthDate = () => {
             <label className={`w-full ${style.p}`}>
               {item.label[language]}
             </label>
-            <input
-              className="border-2 w-full outline-none rounded-md p-2 no-spin"
-              type={item.type}
-              name={item.name}
-              placeholder={item.placeholder[language]}
-              value={birthData[item.name]}
-              onChange={handleChange}
-              max={item.max}
-              min={1}
-            />
+            {toggle ? (
+              <input
+                className="border-2 w-full outline-none rounded-md p-2 no-spin"
+                type={item.type}
+                name={item.name}
+                placeholder={item.placeholder[language]}
+                value={birthDate[item.name] || ""}
+                onChange={handleChange}
+                max={item.max}
+                min={item.min}
+              />
+            ) : (
+              <>{birthDate[item.name] || ""}</>
+            )}
           </div>
         ))}
       </div>

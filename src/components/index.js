@@ -23,3 +23,5 @@ export { default as EducationLevel } from "./anketa_forms/EducationLevel";
 export { default as FamilySituation } from "./anketa_forms/FamilySituation";
 export { default as NumberChildren } from "./anketa_forms/NumberChildren";
 export { default as ContinueBtn } from "./anketa_forms/ContinueBtn";
+export { default as CanselEntryBtn } from "./anketa_forms/CanselEntryBtn";
+export { default as SubmitBtn } from "./anketa_forms/SubmitBtn";

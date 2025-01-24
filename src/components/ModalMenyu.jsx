@@ -5,7 +5,7 @@ import { style } from "../util/style";
 import { useSelector } from "react-redux";
 
 const ModalMenyu = ({ value, onClick }) => {
-  const language = useSelector((state) => state.language); // Tilni Redux'dan olish
+  const language = useSelector((state) => state.language.language); // Tilni Redux'dan olish
 
   return (
     <div

@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const [modal, setModal] = useState("-top-[0] -left-[170vh]");
-  const language = useSelector((state) => state.language);
+  const language = useSelector((state) => state.language.language);
   const pathname = useLocation().pathname;
 
   const modalHidden = () => {
