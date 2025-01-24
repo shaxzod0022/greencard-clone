@@ -34,7 +34,7 @@ const Anketa = () => {
       <EducationLevel />
       <FamilySituation />
       <NumberChildren />
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-4 flex-wrap">
         <SubmitBtn />
         <ContinueBtn />
         <CanselEntryBtn />
