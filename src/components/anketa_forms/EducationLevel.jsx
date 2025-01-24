@@ -112,7 +112,7 @@ const EducationLevel = () => {
         >
           {toggle ? (
             educationLevels.map((item, idx) => (
-              <div key={idx} className={`flex items-start gap-2 w-full`}>
+              <div key={idx} className={`flex items-center gap-2 w-full`}>
                 <input
                   type="radio"
                   name="level"

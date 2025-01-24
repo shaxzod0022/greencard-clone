@@ -10,7 +10,10 @@ const ContinueBtn = () => {
   const updateBtnBoolen = () => {
     dispatch(setCurrent(!toggle));
     if (!toggle) {
-      window.scrollTo(0, 0);
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
     }
   };
 
