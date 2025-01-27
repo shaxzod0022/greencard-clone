@@ -8,11 +8,11 @@ const Footer = () => {
   const language = useSelector((state) => state.language.language);
   return (
     <div
-      className={`flex justify-center !items-start flex-wrap bg-white sm:gap-4 gap-5 w-full lg:px-[120px] md:px-[80px] sm:px-[50px] sm:pt-10  p-5`}
+      className={`flex sm:justify-between justify-start flex-wrap bg-white sm:gap-4 gap-5 w-full lg:px-[120px] md:px-[80px] sm:px-[50px] sm:pt-10 p-5`}
     >
       {footerInfo.map((item, idx) => {
         return (
-          <div key={idx} className={`max-w-[390px] sm:w-[45%] w-full`}>
+          <div key={idx} className={``}>
             <Link
               to={`/${item.url}`}
               className={`w-full justify-center flex items-center gap-4 flex-wrap`}
