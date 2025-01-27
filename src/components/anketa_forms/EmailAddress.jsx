@@ -28,6 +28,7 @@ const EmailAddress = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
     dispatch(
       updateInput({
         key: "emails",

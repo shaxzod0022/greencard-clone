@@ -8,14 +8,14 @@ const SelectCountryToday = () => {
   const cityDataToday = useSelector((i) => i.form.data.countryOfResidence);
   const toggle = useSelector((i) => i.currentBtn.current);
   const handleInputChange = (e) => {
-    const { value } = e.target;
-    dispatch(
-      updateInput({
-        key: "countryOfResidence",
-        name: "countryOfResidence",
-        value: value,
-      })
-    );
+    if (/^[a-zA-Z]*$/.test(e.target.value))
+      dispatch(
+        updateInput({
+          key: "countryOfResidence",
+          name: "countryOfResidence",
+          value: e.target.value,
+        })
+      );
   };
 
   const language = useSelector((state) => state.language.language);

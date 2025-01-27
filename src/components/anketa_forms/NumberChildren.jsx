@@ -12,13 +12,14 @@ const NumberChildren = () => {
   const handleInputChange = (e) => {
     const { value, max } = e.target;
     if (max && +value > +max) return;
-    dispatch(
-      updateInput({
-        key: "numberChildren",
-        name: "numberChildren",
-        value: value,
-      })
-    );
+    if (/^[0-9]*$/.test(value))
+      dispatch(
+        updateInput({
+          key: "numberChildren",
+          name: "numberChildren",
+          value: value,
+        })
+      );
   };
 
   return (
@@ -35,11 +36,11 @@ const NumberChildren = () => {
           {toggle ? (
             <input
               className="border-2 outline-none rounded-md p-2 no-spin"
-              type="number"
+              type="text"
               name="city"
               onChange={handleInputChange}
               value={childrenNum.numberChildren}
-              max={15}
+              max={25}
               min={0}
             />
           ) : (

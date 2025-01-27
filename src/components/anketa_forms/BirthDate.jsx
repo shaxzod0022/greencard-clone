@@ -7,7 +7,6 @@ const inputs = [
   {
     label: { uz: "Oy", ru: "Месяц" },
     name: "month",
-    type: "number",
     placeholder: { uz: "oo", ru: "мм" },
     max: 12,
     min: 1,
@@ -15,7 +14,6 @@ const inputs = [
   {
     label: { uz: "Kun", ru: "День" },
     name: "day",
-    type: "number",
     placeholder: { uz: "kk", ru: "дд" },
     max: 31,
     min: 1,
@@ -23,7 +21,6 @@ const inputs = [
   {
     label: { uz: "Yil", ru: "Год" },
     name: "year",
-    type: "number",
     placeholder: { uz: "yyyy", ru: "гггг" },
     max: 2006,
     min: 1900,
@@ -39,14 +36,14 @@ const BirthDate = () => {
   const handleChange = (e) => {
     const { name, value, max } = e.target;
     if (max && +value > +max) return;
-
-    dispatch(
-      updateInput({
-        key: "dateOfBirth",
-        name: name,
-        value: value,
-      })
-    );
+    if (/^[0-9]*$/.test(value))
+      dispatch(
+        updateInput({
+          key: "dateOfBirth",
+          name: name,
+          value: value,
+        })
+      );
   };
 
   return (
@@ -68,7 +65,7 @@ const BirthDate = () => {
             {toggle ? (
               <input
                 className="border-2 w-full outline-none rounded-md p-2 no-spin"
-                type={item.type}
+                type="text"
                 name={item.name}
                 placeholder={item.placeholder[language]}
                 value={birthDate[item.name] || ""}

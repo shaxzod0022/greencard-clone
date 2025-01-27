@@ -38,14 +38,14 @@ const PersonalInfo = () => {
 
   const handleChange = (e) => {
     const { name, type, value, checked } = e.target;
-
-    dispatch(
-      updateInput({
-        key: "userNames",
-        name,
-        value: type === "checkbox" ? checked : value,
-      })
-    );
+    if (/^[a-zA-Z]*$/.test(value))
+      dispatch(
+        updateInput({
+          key: "userNames",
+          name,
+          value: type === "checkbox" ? checked : value,
+        })
+      );
 
     if (type === "checkbox") {
       if (name === "noFirstName" && checked) {

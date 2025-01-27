@@ -12,13 +12,14 @@ const BirthCity = () => {
   const toggle = useSelector((i) => i.currentBtn.current);
 
   const handleInputChange = (e) => {
-    dispatch(
-      updateInput({
-        key: "nativeRegion",
-        name: "cityName",
-        value: e.target.value,
-      })
-    );
+    if (/^[a-zA-Z]*$/.test(e.target.value))
+      dispatch(
+        updateInput({
+          key: "nativeRegion",
+          name: "cityName",
+          value: e.target.value,
+        })
+      );
   };
 
   const handleCheckboxChange = (e) => {
