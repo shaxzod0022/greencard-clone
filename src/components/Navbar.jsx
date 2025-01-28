@@ -51,7 +51,9 @@ const Navbar = () => {
             <li key={link.id} className={`font-semibold text-[18px]`}>
               <Link
                 to={`/${link.id}`}
-                className={`transition-all hover:text-red-500`}
+                className={`transition-all ${
+                  pathname === `/${link.id}` && "text-red-500"
+                } hover:text-red-500`}
               >
                 {link.title[language]}
               </Link>
