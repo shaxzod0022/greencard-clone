@@ -1,11 +1,12 @@
 import React from "react";
 import { navbarLinks } from "../util/constants";
-import { Link } from "react-router-dom"; // To'g'ri import
+import { Link, useLocation } from "react-router-dom";
 import { style } from "../util/style";
 import { useSelector } from "react-redux";
 
 const ModalMenyu = ({ value, onClick }) => {
-  const language = useSelector((state) => state.language.language); // Tilni Redux'dan olish
+  const language = useSelector((state) => state.language.language);
+  const pathname = useLocation().pathname;
 
   return (
     <div
@@ -16,7 +17,7 @@ const ModalMenyu = ({ value, onClick }) => {
       </span>
       {navbarLinks.map((link, idx) => (
         <Link
-          className={`w-full ${
+          className={`w-full ${pathname === `/${link.id}` && "text-red-500"} ${
             idx === 0 && "mt-5"
           } hover:bg-slate-200 text-center py-2`}
           key={link.id}
