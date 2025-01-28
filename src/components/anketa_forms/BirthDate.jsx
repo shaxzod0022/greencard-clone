@@ -36,14 +36,14 @@ const BirthDate = () => {
   const handleChange = (e) => {
     const { name, value, max } = e.target;
     if (max && +value > +max) return;
-    if (/^[0-9]*$/.test(value))
-      dispatch(
-        updateInput({
-          key: "dateOfBirth",
-          name: name,
-          value: value,
-        })
-      );
+    if (!/^[0-9]*$/.test(Number(value))) return;
+    dispatch(
+      updateInput({
+        key: "dateOfBirth",
+        name: name,
+        value: Number(value),
+      })
+    );
   };
 
   return (
@@ -65,7 +65,7 @@ const BirthDate = () => {
             {toggle ? (
               <input
                 className="border-2 w-full outline-none rounded-md p-2 no-spin"
-                type="text"
+                type="number"
                 name={item.name}
                 placeholder={item.placeholder[language]}
                 value={birthDate[item.name] || ""}

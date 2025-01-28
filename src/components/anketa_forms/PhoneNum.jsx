@@ -11,14 +11,13 @@ const PhoneNum = () => {
   const handleInputChange = (e) => {
     const { value, max } = e.target;
     if (max && +value > +max) return;
-    if (/^[0-9]*$/.test(value))
-      dispatch(
-        updateInput({
-          key: "phoneNumber",
-          name: "phoneNumber",
-          value: value,
-        })
-      );
+    dispatch(
+      updateInput({
+        key: "phoneNumber",
+        name: "phoneNumber",
+        value: Number(value),
+      })
+    );
   };
   return (
     <div className={`w-full rounded-md`}>
@@ -34,7 +33,7 @@ const PhoneNum = () => {
           {toggle ? (
             <input
               className="border-2 w-full outline-none rounded-md p-2 no-spin"
-              type="text"
+              type="number"
               name="city"
               onChange={handleInputChange}
               value={phoneNum ? phoneNum.phoneNumber : ""}
